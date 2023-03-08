@@ -78,13 +78,13 @@ export default function Home() {
     const toSelector = toCurrency.current.value;
     const toCurrencyNum = toCurrencyInput.current.value;
     if (fromSelector === "usd" && toSelector === "uah") {
-      setFromCurrencyValue((toCurrencyNum * usd[0]).toFixed(4));
-    } else if (fromSelector === "usd" && toSelector === "eur") {
-      setFromCurrencyValue((toCurrencyNum * usd[1]).toFixed(4));
-    } else if (fromSelector === "uah" && toSelector === "usd") {
       setFromCurrencyValue((toCurrencyNum * uah[0]).toFixed(4));
-    } else if (fromSelector === "uah" && toSelector === "eur") {
+    } else if (fromSelector === "usd" && toSelector === "eur") {
       setFromCurrencyValue((toCurrencyNum * uah[1]).toFixed(4));
+    } else if (fromSelector === "uah" && toSelector === "usd") {
+      setFromCurrencyValue((toCurrencyNum * usd[0]).toFixed(4));
+    } else if (fromSelector === "uah" && toSelector === "eur") {
+      setFromCurrencyValue((toCurrencyNum * usd[1]).toFixed(4));
     } else if (fromSelector === "eur" && toSelector === "usd") {
       setFromCurrencyValue((toCurrencyNum * eur[0]).toFixed(4));
     } else if (fromSelector === "eur" && toSelector === "uah") {
