@@ -6,9 +6,9 @@ const Header = () => {
   const { USD, EUR } = store;
   console.log();
   return (
-    <div>
-      <div>{USD.UAH}</div>
-      <div>{EUR.UAH}</div>
+    <div className="flex gap-5 justify-end bg-slate-300 items-end p-2 pr-10">
+      <div>USD: {USD.UAH}</div>
+      <div>EUR: {EUR.UAH}</div>
     </div>
   );
 };

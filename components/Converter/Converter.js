@@ -23,15 +23,12 @@ function Converter() {
     };
     const fromCurrencyNum = fromCurrencyInput.current.value;
     const toCurrencyNum = toCurrencyInput.current.value;
-    if (side === "from") {
-      if (fromCurrencyNum >= 0) {
+    if (fromCurrencyNum >= 0 && toCurrencyNum >= 0) {
+      if (side === "from") {
         const rate = rates[fromSelector][toSelector] || 1;
         setFromCurrencyValue(fromCurrencyNum);
         setToCurrencyValue((fromCurrencyNum * rate).toFixed(4));
-      }
-    }
-    if (side === "to") {
-      if (toCurrencyNum >= 0) {
+      } else {
         const rate = rates[toSelector][fromSelector] || 1;
         setFromCurrencyValue((toCurrencyNum * rate).toFixed(4));
         setToCurrencyValue(toCurrencyNum);
@@ -40,15 +37,18 @@ function Converter() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="flex flex-col gap-5 items-center bg-gray-200 py-10 min-h-screen">
+      <h1 className="text-3xl italic text-red-300">Currency converter</h1>
+      <div className="flex gap-5">
         <input
+          className="p-2 text-lg"
           type="number"
           value={fromCurrencyValue}
           ref={fromCurrencyInput}
           onChange={() => handleCurrencyChange("from")}
         ></input>
         <select
+          className="border"
           name="fromCurrency"
           id="fromCurrency"
           defaultValue="USD"
@@ -62,14 +62,16 @@ function Converter() {
           ))}
         </select>
       </div>
-      <div>
+      <div className="flex gap-5">
         <input
+          className="p-2 text-lg"
           type="number"
           ref={toCurrencyInput}
           value={toCurrencyValue}
           onChange={() => handleCurrencyChange("to")}
         />
         <select
+          className="border"
           name="toCurrency"
           id="toCurrency"
           defaultValue="UAH"
