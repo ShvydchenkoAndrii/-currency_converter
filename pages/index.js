@@ -48,9 +48,9 @@ export default function Home() {
   const fromCurrency = useRef(null);
   const toCurrency = useRef(null);
 
-  const handlerChangingFromCurrency = () => {
+  const handlerChangingFromCurrency = (event) => {
     const fromSelector = fromCurrency.current.value;
-    const fromCurrencyNum = fromCurrencyInput.current.value;
+    const fromCurrencyNum = event.target.value;
     const toSelector = toCurrency.current.value;
 
     const rates = {
@@ -59,13 +59,14 @@ export default function Home() {
       EUR: { USD: EUR.USD, UAH: EUR.UAH },
     };
     const rate = rates[fromSelector][toSelector] || 1;
+    setFromCurrencyValue(fromCurrencyNum);
     setToCurrencyValue((fromCurrencyNum * rate).toFixed(4));
   };
 
-  const handlerChangingToCurrency = () => {
+  const handlerChangingToCurrency = (event) => {
     const fromSelector = fromCurrency.current.value;
     const toSelector = toCurrency.current.value;
-    const toCurrencyNum = toCurrencyInput.current.value;
+    const toCurrencyNum = event.target.value;
 
     const rates = {
       USD: { UAH: USD.UAH, EUR: USD.EUR },
@@ -74,8 +75,8 @@ export default function Home() {
     };
     const rate = rates[toSelector][fromSelector] || 1;
     setFromCurrencyValue((toCurrencyNum * rate).toFixed(4));
+    setToCurrencyValue(toCurrencyNum);
   };
-
   useEffect(() => {
     getInfo("USD").then((res) => {
       setUSD(res);
@@ -98,16 +99,16 @@ export default function Home() {
         <div>
           <input
             type="number"
-            defaultValue={fromCurrencyValue}
+            value={fromCurrencyValue}
             ref={fromCurrencyInput}
-            onChange={() => handlerChangingFromCurrency()}
+            onChange={handlerChangingFromCurrency}
           ></input>
           <select
             name="fromCurrency"
             id="fromCurrency"
             defaultValue="USD"
             ref={fromCurrency}
-            onChange={() => handlerChangingFromCurrency()}
+            onChange={handlerChangingFromCurrency}
           >
             {currencies.map((currency) => (
               <option key={currency} value={currency}>
@@ -120,15 +121,15 @@ export default function Home() {
           <input
             type="number"
             ref={toCurrencyInput}
-            defaultValue={toCurrencyValue}
-            onChange={() => handlerChangingToCurrency()}
+            value={toCurrencyValue}
+            onChange={handlerChangingToCurrency}
           />
           <select
             name="toCurrency"
             id="toCurrency"
             defaultValue="UAH"
             ref={toCurrency}
-            onChange={() => handlerChangingToCurrency()}
+            onChange={handlerChangingToCurrency}
           >
             {currencies.map((currency) => (
               <option key={currency} value={currency}>
