@@ -2,8 +2,8 @@ import { AppContext } from "@/pages";
 import React, { useContext, useState, useRef } from "react";
 
 function Converter() {
-  const store = useContext(AppContext);
-  const { USD, EUR, UAH } = store;
+  const { USD, EUR, UAH } = useContext(AppContext);
+  
   const currencies = ["USD", "UAH", "EUR"];
   const [fromCurrencyValue, setFromCurrencyValue] = useState("");
   const [toCurrencyValue, setToCurrencyValue] = useState("");
