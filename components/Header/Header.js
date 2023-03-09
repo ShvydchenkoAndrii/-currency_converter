@@ -6,9 +6,16 @@ const Header = () => {
   const { USD, EUR } = store;
   console.log();
   return (
-    <div className="flex gap-5 justify-end bg-slate-300 items-end p-2 pr-10">
-      <div>USD: {USD.UAH}</div>
-      <div>EUR: {EUR.UAH}</div>
+    <div className="flex gap-5 justify-between bg-black text-white items-end p-2 pr-10">
+      {USD.Time && (
+        <div>Last updat at: {USD.Time.slice(0, -5).concat("GMT +0")}</div>
+      )}
+
+      <div className="flex gap-2">
+        <div>Actual exchange rate: </div>
+        <div>USD: {USD.UAH && USD.UAH.toFixed(2)}</div>
+        <div>EUR: {EUR.UAH && EUR.UAH.toFixed(2)}</div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import Head from "next/head";
 import Header from "@/components/Header/Header";
 import Converter from "@/components/Converter/Converter";
-import { getInfo } from "@/services/currency_request";
+import { getExchangeRate } from "@/pages/api/currency_request";
 
 export const AppContext = React.createContext();
 
@@ -11,20 +12,16 @@ function App() {
   const [UAH, setUAH] = useState({});
 
   useEffect(() => {
-    getInfo("USD").then((res) => {
+    getExchangeRate("USD").then((res) => {
       setUSD(res);
     });
-    getInfo("UAH").then((res) => {
+    getExchangeRate("UAH").then((res) => {
       setUAH(res);
     });
-    getInfo("EUR").then((res) => {
+    getExchangeRate("EUR").then((res) => {
       setEUR(res);
     });
   }, []);
-
-  // const [USD, setUSD] = useState({ UAH: 36.91, EUR: 0.94 });
-  // const [EUR, setEUR] = useState({ USD: 1.07, UAH: 39.38 });
-  // const [UAH, setUAH] = useState({ USD: 0.027, EUR: 0.025 });
 
   const store = {
     USD,
@@ -34,6 +31,10 @@ function App() {
 
   return (
     <AppContext.Provider value={store}>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>Currency converter</title>
+      </Head>
       <Header />
       <Converter />
     </AppContext.Provider>

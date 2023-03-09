@@ -38,17 +38,17 @@ function Converter() {
 
   return (
     <div className="flex flex-col gap-5 items-center bg-gray-200 py-10 min-h-screen">
-      <h1 className="text-3xl italic text-red-300">Currency converter</h1>
+      <h1 className="text-3xl italic text-red-500">Currency converter</h1>
       <div className="flex gap-5">
         <input
-          className="p-2 text-lg"
+          className="p-2 text-lg outline-offset-4"
           type="number"
           value={fromCurrencyValue}
           ref={fromCurrencyInput}
           onChange={() => handleCurrencyChange("from")}
         ></input>
         <select
-          className="border"
+          className="outline-offset-2"
           name="fromCurrency"
           id="fromCurrency"
           defaultValue="USD"
@@ -64,14 +64,14 @@ function Converter() {
       </div>
       <div className="flex gap-5">
         <input
-          className="p-2 text-lg"
+          className="p-2 text-lg outline-offset-4"
           type="number"
           ref={toCurrencyInput}
           value={toCurrencyValue}
           onChange={() => handleCurrencyChange("to")}
         />
         <select
-          className="border"
+          className=" outline-offset-2"
           name="toCurrency"
           id="toCurrency"
           defaultValue="UAH"
