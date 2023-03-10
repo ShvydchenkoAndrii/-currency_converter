@@ -16,11 +16,7 @@ function Converter() {
   const handleCurrencyChange = (side) => {
     const fromSelector = fromCurrency.current.value;
     const toSelector = toCurrency.current.value;
-    const rates = {
-      USD: { UAH: USD.UAH, EUR: USD.EUR },
-      UAH: { USD: UAH.USD, EUR: UAH.EUR },
-      EUR: { USD: EUR.USD, UAH: EUR.UAH },
-    };
+    const rates = { USD, UAH, EUR }
     const fromCurrencyNum = fromCurrencyInput.current.value;
     const toCurrencyNum = toCurrencyInput.current.value;
 
