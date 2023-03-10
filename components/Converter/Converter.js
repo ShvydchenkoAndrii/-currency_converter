@@ -68,6 +68,7 @@ function Converter() {
         <input
           className="p-2 text-lg outline-offset-4"
           type="number"
+          pattern="[0-9]*"
           ref={toCurrencyInput}
           value={toCurrencyValue}
           onChange={() => handleCurrencyChange("to")}
