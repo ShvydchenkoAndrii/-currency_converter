@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Header from "@/components/Header/Header";
 import Converter from "@/components/Converter/Converter";
-import { getExchangeRate } from "@/pages/api/currency_request";
+import { getExchangeRate } from "@/services/currency_request";
 
 export const AppContext = React.createContext();
 

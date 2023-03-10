@@ -23,12 +23,8 @@ function Converter() {
     };
     const fromCurrencyNum = fromCurrencyInput.current.value;
     const toCurrencyNum = toCurrencyInput.current.value;
-    if (
-      fromCurrencyNum >= 0 &&
-      toCurrencyNum >= 0 &&
-      typeof fromCurrency === "number" &&
-      typeof toCurrency === "number"
-    ) {
+
+    if (fromCurrencyNum >= 0 && toCurrencyNum >= 0) {
       if (side === "from") {
         const rate = rates[fromSelector][toSelector] || 1;
         setFromCurrencyValue(fromCurrencyNum);
@@ -48,6 +44,7 @@ function Converter() {
         <input
           className="p-2 text-lg outline-offset-4"
           type="number"
+          pattern="[0-9]*"
           value={fromCurrencyValue}
           ref={fromCurrencyInput}
           onChange={() => handleCurrencyChange("from")}

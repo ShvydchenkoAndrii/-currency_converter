@@ -4,7 +4,7 @@ const EXCHANGE_API_URL =
   "https://v6.exchangerate-api.com/v6/25db39558041378c50ec0774/latest";
 
 export async function getExchangeRate(currency = "USD") {
-  try {
+  
     const res = await axios.get(`${EXCHANGE_API_URL}/${currency}`);
     let obj = {};
 
@@ -26,9 +26,6 @@ export async function getExchangeRate(currency = "USD") {
       };
     }
     if (Object.keys(obj).length > 0) return obj;
-
     return null;
-  } catch (error) {
-    throw new Error(error);
-  }
+  
 }
