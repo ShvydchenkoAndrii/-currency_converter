@@ -3,7 +3,7 @@ import React, { useContext, useState, useRef } from "react";
 
 function Converter() {
   const { USD, EUR, UAH } = useContext(AppContext);
-  
+
   const currencies = ["USD", "UAH", "EUR"];
   const [fromCurrencyValue, setFromCurrencyValue] = useState("");
   const [toCurrencyValue, setToCurrencyValue] = useState("");
@@ -23,7 +23,12 @@ function Converter() {
     };
     const fromCurrencyNum = fromCurrencyInput.current.value;
     const toCurrencyNum = toCurrencyInput.current.value;
-    if (fromCurrencyNum >= 0 && toCurrencyNum >= 0) {
+    if (
+      fromCurrencyNum >= 0 &&
+      toCurrencyNum >= 0 &&
+      typeof fromCurrency === "number" &&
+      typeof toCurrency === "number"
+    ) {
       if (side === "from") {
         const rate = rates[fromSelector][toSelector] || 1;
         setFromCurrencyValue(fromCurrencyNum);
